@@ -1,0 +1,49 @@
+quarkus:
+  application:
+    name: serverorc
+  banner:
+    path: banner.txt
+  log:
+    level: INFO
+    category:
+      "dev.sbr":
+        level: DEBUG
+    console:
+      format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
+      level: INFO
+      darken: 1
+  otel:
+    enabled: false
+    resource:
+      attributes: "app=${quarkus.application.name},application=serverorc,system=oracle-server"
+    exporter:
+      otlp:
+        traces:
+          endpoint: http://localhost:4317
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+  http:
+    cors:
+      enabled: true
+      origins: "*"
+    port: 8083
+    test-port: 0
+  jackson:
+    serialization-inclusion: non-empty
+  rest:
+    jackson:
+      optimization:
+        enable-reflection-free-serializers: true
+
+"%dev,test":
+  quarkus:
+    log:
+      console:
+        format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+        level: DEBUG
+
+"%prod":
+  quarkus:
+    hibernate-orm:
+      sql-load-script: import.sql
