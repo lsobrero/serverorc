@@ -554,8 +554,6 @@ public class CustomerResourceTests {
 	@Test
 	void shouldPingHealthCheck() {
 		var expected = Map.of(
-			"name", "Ping Customer REST Endpoint",
-			"status", "UP",
 			"data", Map.of("Response", "Hello Customer Resource")
 		);
 

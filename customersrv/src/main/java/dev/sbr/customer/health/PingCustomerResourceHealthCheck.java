@@ -10,6 +10,7 @@ import org.eclipse.microprofile.health.Liveness;
  */
 @Liveness
 public class PingCustomerResourceHealthCheck implements HealthCheck {
+
 	private final CustomerResource customerResource;
 
   public PingCustomerResourceHealthCheck(CustomerResource heroResource) {
