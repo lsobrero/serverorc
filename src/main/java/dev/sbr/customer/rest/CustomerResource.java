@@ -59,7 +59,7 @@ public class CustomerResource {
             responseCode = "404",
             description = "No customer found"
     )
-    public Uni<Response> getRandomHero() {
+    public Uni<Response> getRandomCustomer() {
         return this.customerService.findRandomCustomer()
                 .onItem().ifNotNull().transform(h -> {
                     Log.debugf("Found random customer: %s", h);
@@ -105,8 +105,8 @@ public class CustomerResource {
             responseCode = "404",
             description = "The customer is not found for a given identifier"
     )
-    public Uni<Response> getHero(@Parameter(name = "id", required = true) @PathParam("id") Long id) {
-        return this.customerService.findHeroById(id)
+    public Uni<Response> getCustomer(@Parameter(name = "id", required = true) @PathParam("id") Long id) {
+        return this.customerService.findCustomerById(id)
                 .onItem().ifNotNull().transform(h -> {
                     Log.debugf("Found customer: %s", h);
                     return Response.ok(h).build();
@@ -129,7 +129,7 @@ public class CustomerResource {
             responseCode = "400",
             description = "Invalid customer passed in (or no request body found)"
     )
-    public Uni<Response> createHero(
+    public Uni<Response> createCustomer(
             @RequestBody(
                     name = "customer",
                     required = true,
@@ -144,7 +144,7 @@ public class CustomerResource {
         return this.customerService.persistCustomer(customer)
                 .map(h -> {
                     var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(h.getId())).build();
-                    Log.debugf("New Hero created with URI %s", uri.toString());
+                    Log.debugf("New Customer created with URI %s", uri.toString());
                     return Response.created(uri).build();
                 });
     }
@@ -165,7 +165,7 @@ public class CustomerResource {
             responseCode = "404",
             description = "No customer found"
     )
-    public Uni<Response> fullyUpdateHero(
+    public Uni<Response> fullyUpdateCustomer(
             @Parameter(name = "id", required = true) @PathParam("id") Long id,
             @RequestBody(
                     name = "customer",
@@ -219,7 +219,7 @@ public class CustomerResource {
         return this.customerService.replaceAllCustomers(customers)
                 .map(h -> {
                     var uri = uriInfo.getAbsolutePathBuilder().build();
-                    Log.debugf("New Heroes created with URI %s", uri.toString());
+                    Log.debugf("New Customers created with URI %s", uri.toString());
                     return Response.created(uri).build();
                 });
     }
@@ -245,7 +245,7 @@ public class CustomerResource {
             responseCode = "404",
             description = "No customer found"
     )
-    public Uni<Response> partiallyUpdateHero(
+    public Uni<Response> partiallyUpdateCustomer(
             @Parameter(name = "id", required = true) @PathParam("id") Long id,
             @RequestBody(
                     name = "valid_customer",
@@ -293,7 +293,7 @@ public class CustomerResource {
     )
     public Uni<Void> deleteCustomer(@Parameter(name = "id", required = true) @PathParam("id") Long id) {
         return this.customerService.deleteCustomer(id)
-                .invoke(() -> Log.debugf("Hero deleted with %d", id));
+                .invoke(() -> Log.debugf("Customer deleted with %d", id));
     }
 
     @GET
@@ -306,13 +306,13 @@ public class CustomerResource {
             description = "Ping hello",
             content = @Content(
                     schema = @Schema(implementation = String.class),
-                    examples = @ExampleObject(name = "hello_success", value = "Hello Hero Resource")
+                    examples = @ExampleObject(name = "hello_success", value = "Hello Customer Resource")
             )
     )
     @NonBlocking
     public String hello() {
-        Log.debug("Hello Hero Resource");
-        return "Hello Hero Resource";
+        Log.debug("Hello Customer Resource");
+        return "Hello Customer Resource";
     }
 
 }

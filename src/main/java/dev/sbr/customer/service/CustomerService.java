@@ -40,7 +40,7 @@ public class CustomerService {
 
     @WithSpan("CustomerService.findAllCustomers")
     public Uni<List<Customer>> findAllCustomers() {
-        Log.debug("Getting all heroes");
+        Log.debug("Getting all customers");
         return this.customerRepository.listAll();
     }
 
@@ -56,7 +56,7 @@ public class CustomerService {
     }
 
     @WithSpan("CustomerService.findCustomerById")
-    public Uni<Customer> findHeroById(@SpanAttribute("arg.id") Long id) {
+    public Uni<Customer> findCustomerById(@SpanAttribute("arg.id") Long id) {
         Log.debugf("Finding customer by id = %d", id);
         return this.customerRepository.findById(id);
     }
@@ -64,14 +64,14 @@ public class CustomerService {
     @WithSpan("CustomerService.persistCustomer")
     @WithTransaction
     public Uni<Customer> persistCustomer(@SpanAttribute("arg.customer") @NotNull @Valid Customer customer) {
-        Log.debugf("Persisting hero: %s", customer);
+        Log.debugf("Persisting customer: %s", customer);
         return this.customerRepository.persist(customer);
     }
 
     @WithSpan("CustomerService.replaceCustomer")
     @WithTransaction
     public Uni<Customer> replaceCustomer(@SpanAttribute("arg.customer") @NotNull @Valid Customer customer) {
-        Log.debugf("Replacing hero: %s", customer);
+        Log.debugf("Replacing customer: %s", customer);
         return this.customerRepository.findById(customer.getId())
                 .onItem().ifNotNull().transform(h -> {
                     this.customerFullUpdateMapper.mapFullUpdate(customer, h);

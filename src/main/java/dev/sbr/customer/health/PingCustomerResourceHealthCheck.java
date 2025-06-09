@@ -9,10 +9,10 @@ import org.eclipse.microprofile.health.Liveness;
  * {@link HealthCheck} to ping the Hero service
  */
 @Liveness
-public class PingHeroResourceHealthCheck implements HealthCheck {
+public class PingCustomerResourceHealthCheck implements HealthCheck {
 	private final CustomerResource customerResource;
 
-  public PingHeroResourceHealthCheck(CustomerResource heroResource) {
+  public PingCustomerResourceHealthCheck(CustomerResource heroResource) {
     this.customerResource = heroResource;
   }
 
@@ -20,7 +20,7 @@ public class PingHeroResourceHealthCheck implements HealthCheck {
 	public HealthCheckResponse call() {
 		var response = this.customerResource.hello();
 
-		return HealthCheckResponse.named("Ping Hero REST Endpoint")
+		return HealthCheckResponse.named("Ping Customer REST Endpoint")
 			.withData("Response", response)
 			.up()
 			.build();

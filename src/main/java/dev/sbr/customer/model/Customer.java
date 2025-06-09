@@ -62,7 +62,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Hero{" +
+        return "Customer{" +
                 "id=" + this.id +
                 ", name='" + this.customerName + '\'' +
                 ", otherName='" + this.otherName + '\'' +
