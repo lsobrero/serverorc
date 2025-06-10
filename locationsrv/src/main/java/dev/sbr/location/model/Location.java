@@ -42,7 +42,7 @@ public class Location extends PanacheEntity {
     /* prettier-ignore */
     public String toString() {
         return (
-                "Villain{" +
+                "Location{" +
                         "id=" + this.id +
                         ", name='" + this.name +
                         '}'

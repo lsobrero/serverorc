@@ -56,7 +56,7 @@ class LocationResourceTests {
 	}
 
 	@Test
-	void shouldNotGetUnknownVillain() {
+	void shouldNotGetUnknownLocation() {
 		when(this.locationService.findLocationById(DEFAULT_ID))
 			.thenReturn(Optional.empty());
 

@@ -12,6 +12,16 @@ quarkus:
       format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
       level: INFO
       darken: 1
+
+  datasource:
+    db-kind: oracle
+    username: userdev
+    password: mypass
+    reactive:
+      url: vertx-reactive:oracle:thin:@localhost:1521/testpdb
+
+  metrics-enabled: true
+
   otel:
     enabled: false
     resource:
@@ -47,3 +57,7 @@ quarkus:
   quarkus:
     hibernate-orm:
       sql-load-script: import.sql
+
+
+
+
