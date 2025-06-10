@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "customersrv.fullname" . }}
+  name: {{ include "rest-locations.fullname" . }}
   labels:
-    {{- include "customersrv.labels" . | nindent 4 }}
+    {{- include "rest-locations.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "customersrv.selectorLabels" . | nindent 4 }}
+    {{- include "rest-locations.selectorLabels" . | nindent 4 }}

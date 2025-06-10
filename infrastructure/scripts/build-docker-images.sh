@@ -7,7 +7,7 @@ set -e
 
 # Check if service name is provided
 if [ -z "$1" ]; then
-    echo "Error: Service name is required. Use 'customersrv' or 'locationsrv'"
+    echo "Error: Service name is required. Use 'rest-customers' or 'rest-locations'"
     echo "Usage: $0 <service-name> [tag] [--build|--push]"
     exit 1
 fi
@@ -17,8 +17,8 @@ IMAGE_NAME="$1"
 TAG="${2:-latest}" # Use provided tag or default to "latest" if not provided
 
 # Validate service name
-if [ "$IMAGE_NAME" != "customersrv" ] && [ "$IMAGE_NAME" != "locationsrv" ]; then
-    echo "Error: Invalid service name. Use 'customersrv' or 'locationsrv'"
+if [ "$IMAGE_NAME" != "rest-customers" ] && [ "$IMAGE_NAME" != "rest-locations" ]; then
+    echo "Error: Invalid service name. Use 'rest-customers' or 'rest-locations'"
     exit 1
 fi
 

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-app-properties
+  labels:
+    app.kubernetes.io/name: rest-locations
+data:
+  application.properties: | 
+    quarkus.datasource.db-kind=oracle
+    quarkus.datasource.jdbc.url=jdbc:oracle:thin:@db23cfree-oracle-db23c-free.ora-db.svc.cluster.local:1521/testpdb
+    quarkus.datasource.username=userdev
+    quarkus.datasource.password=mypass

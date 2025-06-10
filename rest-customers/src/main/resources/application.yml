@@ -18,7 +18,7 @@ quarkus:
     username: userdev
     password: mypass
     reactive:
-      url: vertx-reactive:oracle:thin:@localhost:1521/testpdb
+      url: vertx-reactive:oracle:thin:@db23cfree-oracle-db23c-free.ora-db.svc.cluster.local:1521/testpdb
 
   metrics-enabled: true
 
@@ -30,14 +30,14 @@ quarkus:
       otlp:
         traces:
           endpoint: http://localhost:4317
-  hibernate-orm:
-    database:
-      generation: drop-and-create
+#  hibernate-orm:
+#    database:
+#      generation: drop-and-create
   http:
     cors:
       enabled: true
       origins: "*"
-    port: 8083
+    port: 8080
     test-port: 0
   jackson:
     serialization-inclusion: non-empty
@@ -53,10 +53,10 @@ quarkus:
         format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
         level: DEBUG
 
-"%prod":
-  quarkus:
-    hibernate-orm:
-      sql-load-script: import.sql
+#"%prod":
+#  quarkus:
+#    hibernate-orm:
+#      sql-load-script: import.sql
 
 
 
