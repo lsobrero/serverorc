@@ -8,8 +8,8 @@
     <packaging>pom</packaging>
     <name>Quarkus Sample :: Customers</name>
     <modules>
-        <module>customersrv</module>
-        <module>locationsrv</module>
+        <module>rest-customers</module>
+        <module>rest-locations</module>
     </modules>
     <scm>
         <url>https://github.com/lsobrerocustomersrv.git</url>
